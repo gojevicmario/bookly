@@ -46,7 +46,7 @@ class BooksController extends Controller
         $book->author = $request->input('author');
         $book->save();
 
-        return response('Book created', 200);
+        return response('Book created', 201);
     }
 
     /**
@@ -68,7 +68,6 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -80,7 +79,25 @@ class BooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $book = Book::find($id);
+
+        if($request->filled('canBeRented') )
+        {
+            $book->canBeRented = $request->input('canBeRented');
+        }
+
+        if($request->filled('author') )
+        {
+            $book->author = $request->input('author');
+        }
+
+        if($request->filled('name') )
+        {
+            $book->name = $request->input('name');
+        }
+        $book->save();
+
+        return response('Book updated', 200);
     }
 
     /**
@@ -91,6 +108,10 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $book = Book::find($id);
+        $book->delete();
+
+        return response('Book deleted', 200);
+
     }
 }
