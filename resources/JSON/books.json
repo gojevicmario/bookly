@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Harry the pot maker",
+        "author": "Vojko V",
+        "canBeRented": 1
+    },
+    {
+        "id": 2,
+        "name": "Nora",
+        "author": "Amadeus",
+        "canBeRented": 1
+    },
+    {
+        "id": 3,
+        "name": "Jelly belly",
+        "author": "Charles V",
+        "canBeRented": 1
+    }
+]
