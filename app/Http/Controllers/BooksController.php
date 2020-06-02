@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Book;
 
 class BooksController extends Controller
 {
@@ -13,6 +14,7 @@ class BooksController extends Controller
      */
     public function index()
     {
+        return response(Book::orderBy('name','asc')->get(), 200);
         //
     }
 
@@ -34,7 +36,17 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'author' => 'required'
+        ]);
+
+        $book = new Book;
+        $book->name = $request->input('name');
+        $book->author = $request->input('author');
+        $book->save();
+
+        return response('Book created', 200);
     }
 
     /**
@@ -45,7 +57,7 @@ class BooksController extends Controller
      */
     public function show($id)
     {
-        //
+        return Book::find($id);
     }
 
     /**
